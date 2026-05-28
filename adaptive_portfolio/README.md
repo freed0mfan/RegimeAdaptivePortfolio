@@ -54,7 +54,7 @@ pytest tests/ --cov=src -v
 adaptive_portfolio/
 ├── src/
 │   ├── data/         # MoexDataLoader, DataBundle, предобработка
-│   ├── regime/       # MS-AR, GaussianHMM, RegimeSelector, RegimeInterpreter
+│   ├── regime/       # MS-GARCH, MS-AR, GaussianHMM, RegimeSelector, RegimeInterpreter
 │   ├── optimizer/    # MVO/CVaR через CVXPY, RegimeOptimizer, soft blending
 │   ├── backtest/     # Backtester, стратегии, метрики, статистические тесты
 │   └── utils/        # Конфиги, исключения, IO
@@ -100,11 +100,7 @@ print(result.metrics.round(3))
 
 - **Воспроизводимость.** Все стохастические операции используют `random_state=42`.
 - **Ограничения.** Только дневные/недельные данные, без коротких продаж, без
-  дивидендов.  Безрисковая ставка по умолчанию 16% годовых (ставка ЦБ РФ).
+  дивидендов.  Безрисковая ставка по умолчанию 16% годовых.
 - **MOEX ISS.** Актуально для акций режима TQBR. При сетевой ошибке система
   автоматически переходит на синтетические данные с логированием.
 - **CVXPY-solvers.** По умолчанию используется CLARABEL; при отсутствии — SCS/ECOS.
-
-## Лицензия
-
-Учебный проект, MIT.
